@@ -1,0 +1,6 @@
+<div>
+  <span>{{todo.id}}</span>
+  <span>{{todo.name}}</span>
+  <input type="checkbox" [checked]="todo.checked" (click)="handleChecked(todo.id)">
+  <button type="button" (click)="handleRemove(todo.id)">remove</button>
+</div>
