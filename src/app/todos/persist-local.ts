@@ -1,8 +1,8 @@
 export class PersistLocal<T> {
   private key: string;
   private defaultState: T;
-  constructor(key: string = 'app-storage', defaultState?: T) {
-    this.key = 'app-storage-' + key;
+  constructor(key?: string, defaultState?: T) {
+    this.key = key ? 'app-storage-' + key : 'app-storage';
     this.defaultState = defaultState;
   }
   saveStorage(state: T): void {

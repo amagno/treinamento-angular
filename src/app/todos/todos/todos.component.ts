@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../todos.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-todos',
@@ -12,9 +13,8 @@ export class TodosComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.todos, 'TODOS');
-  }
-  onAdd(event) {
-    console.log(event);
+
+
   }
 
 }

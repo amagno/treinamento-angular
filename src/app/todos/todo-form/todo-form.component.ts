@@ -10,7 +10,7 @@ import { TodosService } from '../todos.service';
 export class TodoFormComponent implements OnInit {
   @Output() addTodo = new EventEmitter<Todo>();
 
-  model: Todo = { id: undefined, name: '', checked: undefined };
+  nameTodo = '';
 
   constructor(
     private todosService: TodosService
@@ -19,8 +19,9 @@ export class TodoFormComponent implements OnInit {
   ngOnInit() {
   }
   handleSubmit() {
-    console.log('ADD', this.model);
-    this.todosService.addTodo(this.model);
+    if (this.nameTodo.length > 1) {
+      this.todosService.addTodo(this.nameTodo);
+    }
     // this.model.id = this.todosService.getTodos().length + 2;
     // this.model.checked = false;
     // this.todosService.addTodo(this.model);

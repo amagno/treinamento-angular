@@ -1,46 +1,61 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { PersistLocal } from './persist-local';
-import { LocalStore } from './local-store';
-import 'rxjs/add/operator/filter';
-import { uuidv4 } from '../utils';
+import { StoreService } from './store.service';
+import { Store } from './flux/store';
+import { todosActions } from './flux/reducers/todos';
+import { v4 } from 'uuid';
+import { todosFilterActions } from './flux/reducers/todos-filter';
+import { RootState } from './flux/reducers/root';
+
+
 @Injectable()
 export class TodosService {
-  private store: LocalStore<Todo[]>;
-  private lastId: number;
+  private store: Store<RootState>;
   constructor(
+    private storeService: StoreService
   ) {
-    this.store = new LocalStore<Todo[]>(new PersistLocal('todos', []));
-    this.store.save();
+    this.store = this.storeService.get();
   }
   getTodos(): Observable<Todo[]> {
-    return this.store;
+    return this.store.map(({ filter, todos }) => {
+      if (filter === 'ALL') {
+        return todos;
+      }
+      if (filter === 'CHECKED') {
+        return todos.filter(t => t.checked === true);
+      }
+      if (filter === 'NOT_CHECKED') {
+        return todos.filter(t => t.checked === false);
+      }
+    });
   }
-  addTodo(model: Todo): void {
-    const state = this.store.value;
-    const todo = Object.assign({}, model, { id: uuidv4(), checked: false });
-    const newState = [
-      ...state,
-      todo
-    ];
-    this.store.next(newState);
+  addTodo(name: string): void {
+    const todo = Object.assign({}, { id: v4(), name, checked: false });
+    this.store.dispatch({
+      type: todosActions.ADD_TODO,
+      payload: todo
+    });
   }
   toggleChecked(id: number): void {
-    const state = this.store.value;
-    const newState = state.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo);
-    this.store.next(newState);
+    this.store.dispatch({
+      type: todosActions.TOGGLE_CHECKED,
+      payload: id
+    });
   }
   removeTodo(id: number): void {
-    const state = this.store.value;
-    const newState = state.filter(todo => todo.id !== id);
-    this.store.next(newState);
+    this.store.dispatch({
+      type: todosActions.REMOVE_TODO,
+      payload: id
+    });
   }
-  dispatchChanges(todos?: Todo[]) {
-    this.store.next(todos || this.store.value);
+  setFilter(filter: string) {
+    this.store.dispatch({
+      type: todosFilterActions.SET_FILTER,
+      payload: filter
+    });
   }
-  finish() {
-    this.store.unsubscribe();
+  getFilter() {
+    return this.store.select('filter');
   }
 }

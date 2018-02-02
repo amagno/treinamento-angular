@@ -1,8 +1,11 @@
 <div>
   <h2>Todo List</h2>
   <label for="filter">Esconder completadas</label>
-  <input type="checkbox" (change)="toggleFilter()" [checked]="filter">
   <input type="text" (keyup)="handleFind()" [(ngModel)]="find">
+  <label for="filter">Filter</label>
+  <select name="filter" id="filter" (change)="changeFilter($event)">
+    <option *ngFor="let filter of filters" [value]="filter.value" [selected]="filter.selected">{{ filter.name }}</option>
+  </select>
   <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
 </div>
 
