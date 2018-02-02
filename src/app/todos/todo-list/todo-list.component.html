@@ -1,7 +1,7 @@
 <div>
   <h2>Todo List</h2>
-  <label for="filter">Esconder completadas</label>
-  <input type="text" (keyup)="handleFind()" [(ngModel)]="find">
+  <label for="filter">Busca: </label>
+  <input type="text" (keyup)="handleSearch($event)">
   <label for="filter">Filter</label>
   <select name="filter" id="filter" (change)="changeFilter($event)">
     <option *ngFor="let filter of filters" [value]="filter.value" [selected]="filter.selected">{{ filter.name }}</option>

@@ -7,11 +7,12 @@ import { todosActions } from './flux/reducers/todos';
 import { v4 } from 'uuid';
 import { todosFilterActions } from './flux/reducers/todos-filter';
 import { RootState } from './flux/reducers/root';
-
+import { filterSearchTodos, filterTodos } from './utils';
 
 @Injectable()
 export class TodosService {
   private store: Store<RootState>;
+  private search: RegExp;
   constructor(
     private storeService: StoreService
   ) {
@@ -19,15 +20,7 @@ export class TodosService {
   }
   getTodos(): Observable<Todo[]> {
     return this.store.map(({ filter, todos }) => {
-      if (filter === 'ALL') {
-        return todos;
-      }
-      if (filter === 'CHECKED') {
-        return todos.filter(t => t.checked === true);
-      }
-      if (filter === 'NOT_CHECKED') {
-        return todos.filter(t => t.checked === false);
-      }
+      return filterSearchTodos(filterTodos(todos, filter), this.search);
     });
   }
   addTodo(name: string): void {
@@ -36,6 +29,11 @@ export class TodosService {
       type: todosActions.ADD_TODO,
       payload: todo
     });
+  }
+  searchTodos(regex: RegExp): void {
+    this.search = regex;
+    // Not action its only for update store
+    this.store.dispatch({});
   }
   toggleChecked(id: number): void {
     this.store.dispatch({

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from '../todo';
 import { TodosService } from '../todos.service';
+import { Subject } from 'rxjs/Subject';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -9,6 +10,7 @@ import { TodosService } from '../todos.service';
 export class TodoListComponent implements OnInit {
   // hello = 'Hello World';
   todos: Todo[];
+  search = new Subject<string>();
   filters = [
     { name: 'TODOS', value: 'ALL' },
     { name: 'COMPLETADOS', value: 'CHECKED'},
@@ -17,6 +19,9 @@ export class TodoListComponent implements OnInit {
   constructor(
     private todosService: TodosService
   ) {}
+  handleSearch(event) {
+    this.search.next(event.target.value);
+  }
   changeFilter(event) {
     this.todosService.setFilter(event.target.value);
   }
@@ -27,6 +32,12 @@ export class TodoListComponent implements OnInit {
     this.todosService.getFilter().subscribe(f => {
       this.filters = this.filters.map(filter => filter.value === f ? { ...filter, selected: true } : filter);
     });
+    this.search
+      .debounceTime(600)
+      .distinctUntilChanged()
+      .subscribe(search => {
+        this.todosService.searchTodos(new RegExp(search, 'i'));
+      });
   }
 
 }

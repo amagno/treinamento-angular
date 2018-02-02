@@ -35,6 +35,10 @@ export class StoreService {
     return store
       .do(s => console.log('NEW STATE:', s))
       .do(state => {
+        const newState = {
+          ...state,
+          search: undefined
+        };
         StoreService.persist.saveStorage(state);
       });
   }
