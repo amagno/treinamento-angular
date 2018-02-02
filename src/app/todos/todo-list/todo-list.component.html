@@ -1,5 +1,8 @@
 <div>
   <h2>Todo List</h2>
+  <label for="filter">Esconder completadas</label>
+  <input type="checkbox" (change)="toggleFilter()" [checked]="filter">
+  <input type="text" (keyup)="handleFind()" [(ngModel)]="find">
   <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
 </div>
 

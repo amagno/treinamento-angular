@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../todos.service';
-import { Todo } from '../todo';
 
 @Component({
   selector: 'app-todos',
@@ -8,13 +7,10 @@ import { Todo } from '../todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos: Todo[];
   constructor(
-    private todosService: TodosService
   ) { }
 
   ngOnInit() {
-    this.todos = this.todosService.getTodos();
     // console.log(this.todos, 'TODOS');
   }
   onAdd(event) {

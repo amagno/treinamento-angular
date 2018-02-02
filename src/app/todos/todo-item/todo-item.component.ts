@@ -18,10 +18,8 @@ export class TodoItemComponent implements OnInit {
   }
   handleChecked(id: number) {
     this.todosService.toggleChecked(id);
-    console.log(this.todosService.getTodos());
   }
   handleRemove(id: number) {
     this.todosService.removeTodo(id);
-    console.log(this.todosService.getTodos());
   }
 }

@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     TodosComponent,
   ],
   providers: [
-    TodosService
+    TodosService,
   ],
   exports: [
     TodosComponent
