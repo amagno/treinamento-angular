@@ -1,0 +1,10 @@
+<div fxLayout="column">
+  <label for="filter">Filtro</label>
+  <mat-form-field>
+    <mat-select name="filter" id="filter" (selectionChange)="changeFilter($event)" [value]="selectedFilter">
+      <mat-option *ngFor="let filter of filters" [value]="filter.value">
+        {{ filter.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

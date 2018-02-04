@@ -1,11 +1,4 @@
-<div>
-  <h2>Todo List</h2>
-  <label for="filter">Busca: </label>
-  <input type="text" (keyup)="handleSearch($event)">
-  <label for="filter">Filter</label>
-  <select name="filter" id="filter" (change)="changeFilter($event)">
-    <option *ngFor="let filter of filters" [value]="filter.value" [selected]="filter.selected">{{ filter.name }}</option>
-  </select>
-  <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
-</div>
+<mat-selection-list>
+  <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>    
+</mat-selection-list>
 

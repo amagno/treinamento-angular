@@ -1,5 +1,11 @@
-<form (ngSubmit)="handleSubmit()">
-  <label for="name">Nome: </label>
-  <input type="text" name="name" id="name" [(ngModel)]="nameTodo">
-  <button type="submit">Enviar</button>
+<form (ngSubmit)="handleSubmit()" fxLayout="column" fxFlexAlign="center">
+  <label for="name">Adicionar</label>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Nome da tarefa" type="text" name="name" id="name" [(ngModel)]="nameTodo" required>
+    </mat-form-field>
+    <button type="submit" mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </form>

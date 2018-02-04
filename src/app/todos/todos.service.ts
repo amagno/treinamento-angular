@@ -47,13 +47,13 @@ export class TodosService {
       payload: id
     });
   }
-  setFilter(filter: string) {
+  setFilter(filter: string): void {
     this.store.dispatch({
       type: todosFilterActions.SET_FILTER,
       payload: filter
     });
   }
-  getFilter() {
-    return this.store.select('filter');
+  getFilter(): Observable<string> {
+    return this.store.select<string>('filter');
   }
 }

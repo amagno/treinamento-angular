@@ -7,17 +7,23 @@ import { TodosService } from './todos.service';
 import { TodosComponent } from './todos/todos.component';
 import { FormsModule } from '@angular/forms';
 import { StoreService } from './store.service';
+import { TodosStyleModule } from './todos-style.module';
+import { TodoSearchComponent } from './todo-search/todo-search.component';
+import { TodoFilterComponent } from './todo-filter/todo-filter.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    TodosStyleModule,
   ],
   declarations: [
     TodoListComponent,
     TodoFormComponent,
     TodoItemComponent,
     TodosComponent,
+    TodoSearchComponent,
+    TodoFilterComponent
   ],
   providers: [
     StoreService,

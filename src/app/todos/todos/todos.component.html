@@ -1,4 +1,8 @@
-<div>
-  <app-todo-form></app-todo-form>
-  <app-todo-list></app-todo-list>
-</div>
+<mat-card fxLayout="column" fxLayoutAlign="start center">
+  <div fxLayout="row" style="width: 100%">
+    <app-todo-form fxFlex></app-todo-form>
+    <app-todo-search fxFLex style="margin-right: 10px"></app-todo-search>
+    <app-todo-filter fxFlex></app-todo-filter>
+  </div>
+  <app-todo-list fxFlex></app-todo-list>
+</mat-card>

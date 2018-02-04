@@ -19,7 +19,7 @@ export class TodoItemComponent implements OnInit {
   handleChecked(id: number) {
     this.todosService.toggleChecked(id);
   }
-  handleRemove(id: number) {
+  handleDelete(id: number) {
     this.todosService.removeTodo(id);
   }
 }

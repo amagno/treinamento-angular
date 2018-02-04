@@ -1,6 +1,21 @@
-<div>
+<mat-divider></mat-divider>
+<mat-list-item class="mat-typography" fxLayout="row" fxLayoutAlign="left">
+  <div fxFlex="3 3 calc(50em + 20px)" style="text-align: left">
+    {{todo.name}}
+  </div>
+  <div fxFlex="auto">
+    <mat-slide-toggle [checked]="todo.checked" (change)="handleChecked(todo.id)"></mat-slide-toggle>
+    <button mat-icon-button color="warn" (click)="handleDelete(todo.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+
+
+<!-- <div>
   <span>{{todo.id}}</span>
   <span>{{todo.name}}</span>
   <input type="checkbox" [checked]="todo.checked" (click)="handleChecked(todo.id)">
   <button type="button" (click)="handleRemove(todo.id)">remove</button>
-</div>
+</div> -->
