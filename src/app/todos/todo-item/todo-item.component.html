@@ -1,12 +1,28 @@
 <mat-divider></mat-divider>
 <mat-list-item class="mat-typography" fxLayout="row" fxLayoutAlign="left">
   <div fxFlex="3 3 calc(50em + 20px)" style="text-align: left">
-    {{todo.name}}
+    <span *ngIf="!edit">
+      {{ todo.name }}
+    </span>
+
+    <span *ngIf="edit">
+      <mat-form-field>
+        <input matInput type="text" name="name" id="name" [value]="todo.name" [(ngModel)]="todo.name" required> 
+      </mat-form-field>
+    </span>
   </div>
+
+
   <div fxFlex="auto">
     <mat-slide-toggle [checked]="todo.checked" (change)="handleChecked(todo.id)"></mat-slide-toggle>
-    <button mat-icon-button color="warn" (click)="handleDelete(todo.id)">
+    <button type="button" mat-icon-button color="warn" (click)="handleDelete(todo.id)">
       <mat-icon>delete</mat-icon>
+    </button>
+    <button *ngIf="!edit" type="button" mat-icon-button color="primary" (click)="toggleEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button *ngIf="edit" type="submit" mat-icon-button color="accent" (click)="handleEdit(todo)">
+      <mat-icon>check</mat-icon>
     </button>
   </div>
 </mat-list-item>

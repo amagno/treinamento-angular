@@ -9,12 +9,21 @@ import { TodosService } from '../todos.service';
 })
 export class TodoItemComponent implements OnInit {
   @Input('todo') todo: Todo;
+
+  edit = false;
   constructor(
     private todosService: TodosService
   ) { }
 
   ngOnInit() {
     // console.log(this.todo);
+  }
+  toggleEdit() {
+    this.edit = !this.edit;
+  }
+  handleEdit(todo: Todo) {
+    this.todosService.editTodo(todo);
+    this.edit = false;
   }
   handleChecked(id: number) {
     this.todosService.toggleChecked(id);

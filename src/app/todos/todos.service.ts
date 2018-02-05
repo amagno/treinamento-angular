@@ -30,6 +30,15 @@ export class TodosService {
       payload: todo
     });
   }
+  editTodo(todo: Todo): void {
+    if (!todo.id || !todo.name || typeof todo.checked === 'undefined') {
+      throw new Error(`EDIT TODO IS INVALID: ${todo.id} ${todo.name} ${todo.checked}`);
+    }
+    this.store.dispatch({
+      type: todosActions.EDIT_TODO,
+      payload: todo
+    });
+  }
   searchTodos(regex: RegExp): void {
     this.search = regex;
     // Not action its only for update store
