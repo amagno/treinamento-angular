@@ -18,7 +18,7 @@
     <button type="button" mat-icon-button color="warn" (click)="handleDelete(todo.id)">
       <mat-icon>delete</mat-icon>
     </button>
-    <button *ngIf="!edit" type="button" mat-icon-button color="primary" (click)="toggleEdit()">
+    <button *ngIf="!edit" type="button" mat-icon-button color="primary" [routerLink]="['edit', todo.id]" [preserveFragment]>
       <mat-icon>edit</mat-icon>
     </button>
     <button *ngIf="edit" type="submit" mat-icon-button color="accent" (click)="handleEdit(todo)">

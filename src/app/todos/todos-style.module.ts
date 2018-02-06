@@ -13,6 +13,7 @@ import {
   MatButtonModule,
   MatSlideToggleModule,
   MatSelectModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +28,8 @@ import {
     MatIconModule,
     MatButtonModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressBarModule
   ]
 })
 export class TodosStyleModule { }

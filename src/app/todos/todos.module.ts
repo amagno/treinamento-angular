@@ -10,27 +10,34 @@ import { StoreService } from './store.service';
 import { TodosStyleModule } from './todos-style.module';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
 import { TodoFilterComponent } from './todo-filter/todo-filter.component';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingService } from './loading.service';
+import { TodosRoutingModule } from './todos-routing.module';
+import { ErrorComponent } from './error/error.component';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    TodosRoutingModule,
     FormsModule,
     TodosStyleModule,
   ],
   declarations: [
+    ContainerComponent,
     TodoListComponent,
     TodoFormComponent,
     TodoItemComponent,
     TodosComponent,
     TodoSearchComponent,
-    TodoFilterComponent
+    TodoFilterComponent,
+    LoadingComponent,
+    ErrorComponent
   ],
   providers: [
     StoreService,
     TodosService,
+    LoadingService
   ],
-  exports: [
-    TodosComponent
-  ]
 })
 export class TodosModule { }

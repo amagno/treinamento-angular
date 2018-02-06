@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../todos.service';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'app-todo-filter',
@@ -13,8 +14,12 @@ export class TodoFilterComponent implements OnInit {
     { name: 'NÃO COMPLETADOS', value: 'NOT_CHECKED', selected: undefined}
   ];
   selectedFilter = 'ALL';
-  constructor(private todosService: TodosService) { }
+  constructor(
+    private todosService: TodosService,
+    private loadingService: LoadingService
+  ) { }
   changeFilter({ value }) {
+    this.loadingService.show();
     this.todosService.setFilter(value);
   }
   ngOnInit() {

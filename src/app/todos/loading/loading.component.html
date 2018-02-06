@@ -1,0 +1,3 @@
+<mat-progress-bar *ngIf="loading" mode="determinate" [value]="progress"></mat-progress-bar>
+<ng-content select=".content"></ng-content>
+<ng-content *ngIf="!loading" select=".loading-content"></ng-content>

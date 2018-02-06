@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../todo';
 import { TodosService } from '../todos.service';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -13,19 +14,16 @@ export class TodoFormComponent implements OnInit {
   nameTodo = '';
 
   constructor(
-    private todosService: TodosService
+    private todosService: TodosService,
+    private loadingService: LoadingService
   ) {
   }
   ngOnInit() {
   }
   handleSubmit() {
     if (this.nameTodo.length > 1) {
+      this.loadingService.show();
       this.todosService.addTodo(this.nameTodo);
     }
-    // this.model.id = this.todosService.getTodos().length + 2;
-    // this.model.checked = false;
-    // this.todosService.addTodo(this.model);
-    // this.addTodo.emit(this.model);
-    // console.log(this.todosService.getTodos());
   }
 }
