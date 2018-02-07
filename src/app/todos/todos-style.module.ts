@@ -13,7 +13,9 @@ import {
   MatButtonModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSidenavModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 @NgModule({
@@ -29,7 +31,9 @@ import {
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSidenavModule,
+    MatCheckboxModule
   ]
 })
 export class TodosStyleModule { }

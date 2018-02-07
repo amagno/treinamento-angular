@@ -19,7 +19,7 @@ export class TodoSearchComponent implements OnInit {
   }
   ngOnInit() {
     this.search
-      .debounceTime(600)
+      .debounceTime(300)
       .distinctUntilChanged()
       .subscribe(search => {
         this.loadignService.show();

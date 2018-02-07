@@ -1,2 +1,21 @@
-<h1>CONTAINER</h1>
-<router-outlet></router-outlet>
+
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="open" position="end" class="sidenav">
+    <button mat-raised-button type="button" style="width: 100%" color="primary" (click)="handleClose()" class="button-close">
+      FECHAR
+    </button>
+    <router-outlet name="edit"></router-outlet>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-card class="main">
+      <app-todo-form></app-todo-form>
+      <app-todo-search></app-todo-search>
+      <app-todo-filter></app-todo-filter>
+    </mat-card>
+    <div class="loading">
+      <app-loading></app-loading>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+<!-- <router-outlet name="edit"></router-outlet> -->

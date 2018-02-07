@@ -1,0 +1,9 @@
+<form *ngIf="editableTodo" class="mat-typography" (ngSubmit)="handleSubmit()">
+  <label for="name">Editar tarefa</label>
+  <mat-form-field>
+    <input matInput placeholder="Nome da tarefa" type="text" name="name" id="name" [value]="editableTodo.name" [(ngModel)]="editableTodo.name" required> 
+  </mat-form-field>
+  <mat-checkbox [checked]="editableTodo.checked" name="checked" [(ngModel)]="editableTodo.checked">Completada</mat-checkbox>
+  <mat-divider class="divider"></mat-divider>
+  <button mat-raised-button color="warn" type="submit">CONFIRMAR</button>
+</form>

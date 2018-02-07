@@ -18,6 +18,9 @@ export class TodosService {
   ) {
     this.store = this.storeService.get();
   }
+  getTodoById(id: string): Todo {
+    return Object.assign({}, this.store.value.todos.find(todo => todo.id === id));
+  }
   getTodos(): Observable<Todo[]> {
     return this.store.map(({ filter, todos }) => {
       return filterSearchTodos(filterTodos(todos, filter), this.search);
@@ -44,13 +47,13 @@ export class TodosService {
     // Not action its only for update store
     this.store.dispatch({});
   }
-  toggleChecked(id: number): void {
+  toggleChecked(id: string): void {
     this.store.dispatch({
       type: todosActions.TOGGLE_CHECKED,
       payload: id
     });
   }
-  removeTodo(id: number): void {
+  removeTodo(id: string): void {
     this.store.dispatch({
       type: todosActions.REMOVE_TODO,
       payload: id

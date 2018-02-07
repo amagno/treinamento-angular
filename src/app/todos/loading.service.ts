@@ -25,7 +25,7 @@ export class LoadingService {
   getLoadingObservable(): Observable<boolean> {
     return this.loading;
   }
-  getProgressObservable(time: number = 1): Observable<number> {
+  getProgressObservable(time: number = 0): Observable<number> {
     return interval(time).take(101);
   }
 }

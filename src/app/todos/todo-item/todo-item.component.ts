@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from '../todo';
 import { TodosService } from '../todos.service';
+import { Router } from '@angular/router';
+import { ContainerService } from '../container.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -12,7 +14,9 @@ export class TodoItemComponent implements OnInit {
 
   edit = false;
   constructor(
-    private todosService: TodosService
+    private todosService: TodosService,
+    private router: Router,
+    private containerService: ContainerService
   ) { }
 
   ngOnInit() {
@@ -21,14 +25,16 @@ export class TodoItemComponent implements OnInit {
   toggleEdit() {
     this.edit = !this.edit;
   }
-  handleEdit(todo: Todo) {
-    this.todosService.editTodo(todo);
-    this.edit = false;
+  handleEdit(id) {
+    // this.todosService.editTodo(todo);
+    // this.edit = false;
+    this.containerService.openSideNav();
+    this.router.navigate(['/', 'todos', { outlets: { edit: [id] }}]);
   }
-  handleChecked(id: number) {
+  handleChecked(id: string) {
     this.todosService.toggleChecked(id);
   }
-  handleDelete(id: number) {
+  handleDelete(id: string) {
     this.todosService.removeTodo(id);
   }
 }

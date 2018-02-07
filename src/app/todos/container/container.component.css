@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.sidenav {
+  padding: 10px;
+  border-left: 1px solid #673ab7;
+}
+.button-close {
+  margin-bottom: 20px;
+}
+.loading {
+  height: 20px;
+}
